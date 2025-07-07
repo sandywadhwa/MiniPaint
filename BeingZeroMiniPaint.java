@@ -3,6 +3,10 @@ import java.awt.Color;
 import java.awt.event.ItemEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ItemListener;
+import java.awt.EventQueue;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.util.ArrayList;
@@ -10,6 +14,11 @@ import java.util.Stack;
 import javax.swing.JColorChooser;
 import javax.swing.JPanel;
 import static java.lang.Math.*;
+import java.awt.Dimension;
+import java.awt.BorderLayout;
+import java.awt.Cursor;
+import java.util.logging.Logger;
+import java.util.logging.Level;
 
 abstract class Shape {
     int x1, y1, x2, y2;
@@ -210,7 +219,7 @@ public class BeingZeroMiniPaint extends javax.swing.JFrame {
         setTitle("Being Zero - Mini Paint");
 
         pnlStatus.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        pnlStatus.setPreferredSize(new java.awt.Dimension(649, 25));
+        pnlStatus.setPreferredSize(new Dimension (649, 25));
 
         javax.swing.GroupLayout pnlStatusLayout = new javax.swing.GroupLayout(pnlStatus);
         pnlStatus.setLayout(pnlStatusLayout);
@@ -222,15 +231,15 @@ public class BeingZeroMiniPaint extends javax.swing.JFrame {
         pnlStatusLayout.setVerticalGroup(pnlStatusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(lblMousePos, javax.swing.GroupLayout.DEFAULT_SIZE, 21, Short.MAX_VALUE));
 
-        getContentPane().add(pnlStatus, java.awt.BorderLayout.PAGE_END);
+        getContentPane().add(pnlStatus,BorderLayout.PAGE_END);
 
         jToolBar1.setRollover(true);
 
-        pnlColor.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        pnlColor.setMaximumSize(new java.awt.Dimension(50, 50));
-        pnlColor.setPreferredSize(new java.awt.Dimension(30, 30));
-        pnlColor.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
+        pnlColor.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        pnlColor.setMaximumSize(new Dimension (50, 50));
+        pnlColor.setPreferredSize(new Dimension (30, 30));
+        pnlColor.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent evt) {
                 pnlColorMouseClicked(evt);
             }
         });
@@ -245,9 +254,9 @@ public class BeingZeroMiniPaint extends javax.swing.JFrame {
         jToolBar1.add(pnlColor);
 
         cbShape.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Line", "Oval", "Rectangle" }));
-        cbShape.setMaximumSize(new java.awt.Dimension(80, 30));
-        cbShape.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+        cbShape.setMaximumSize(new Dimension (80, 30));
+        cbShape.addItemListener(new ItemListener() {
+            public void itemStateChanged(ItemEvent evt) {
                 cbShapeItemStateChanged(evt);
             }
         });
@@ -257,13 +266,13 @@ public class BeingZeroMiniPaint extends javax.swing.JFrame {
         tglBtnFilled.setFocusable(false);
         tglBtnFilled.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         tglBtnFilled.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        tglBtnFilled.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+        tglBtnFilled.addItemListener(new ItemListener() {
+            public void itemStateChanged(ItemEvent evt) {
                 tglBtnFilledItemStateChanged(evt);
             }
         });
-        tglBtnFilled.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        tglBtnFilled.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent  evt) {
                 tglBtnFilledActionPerformed(evt);
             }
         });
@@ -285,14 +294,14 @@ public class BeingZeroMiniPaint extends javax.swing.JFrame {
         jbtnClear.setFocusable(false);
         jbtnClear.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jbtnClear.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jbtnClear.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jbtnClear.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent  evt) {
                 jbtnClearActionPerformed(evt);
             }
         });
         jToolBar1.add(jbtnClear);
 
-        getContentPane().add(jToolBar1, java.awt.BorderLayout.PAGE_START);
+        getContentPane().add(jToolBar1,BorderLayout.PAGE_START);
 
         jMenu1.setText("File");
         jMenuBar1.add(jMenu1);
@@ -305,28 +314,28 @@ public class BeingZeroMiniPaint extends javax.swing.JFrame {
         pack();
     }// </editor-fold>
 
-    private void pnlColorMouseClicked(java.awt.event.MouseEvent evt) {
+    private void pnlColorMouseClicked(MouseEvent evt) {
         Color c = JColorChooser.showDialog(rootPane, null, Color.yellow);
         pnlColor.setBackground(c);
         color = c;
     }
 
-    private void cbShapeItemStateChanged(java.awt.event.ItemEvent evt) {
+    private void cbShapeItemStateChanged(ItemEvent evt) {
         selectedShape = cbShape.getSelectedItem().toString();
     }
 
-    private void tglBtnFilledActionPerformed(java.awt.event.ActionEvent evt) {
+    private void tglBtnFilledActionPerformed(ActionEvent evt) {
 
     }
 
-    private void tglBtnFilledItemStateChanged(java.awt.event.ItemEvent evt) {
+    private void tglBtnFilledItemStateChanged(ItemEvent evt) {
         if (evt.getStateChange() == ItemEvent.SELECTED) {
             isFill = true;
         } else
             isFill = false;
     }
 
-    private void jbtnClearActionPerformed(java.awt.event.ActionEvent evt) {
+    private void jbtnClearActionPerformed(ActionEvent  evt) {
         // TODO add your handling code here:
     }
 
@@ -350,22 +359,22 @@ public class BeingZeroMiniPaint extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(BeingZeroMiniPaint.class.getName()).log(java.util.logging.Level.SEVERE,
+            Logger.getLogger(BeingZeroMiniPaint.class.getName()).log(Level.SEVERE,
                     null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(BeingZeroMiniPaint.class.getName()).log(java.util.logging.Level.SEVERE,
+            Logger.getLogger(BeingZeroMiniPaint.class.getName()).log(Level.SEVERE,
                     null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(BeingZeroMiniPaint.class.getName()).log(java.util.logging.Level.SEVERE,
+            Logger.getLogger(BeingZeroMiniPaint.class.getName()).log(Level.SEVERE,
                     null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(BeingZeroMiniPaint.class.getName()).log(java.util.logging.Level.SEVERE,
+            Logger.getLogger(BeingZeroMiniPaint.class.getName()).log(Level.SEVERE,
                     null, ex);
         }
         // </editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
+       EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new BeingZeroMiniPaint().setVisible(true);
             }
