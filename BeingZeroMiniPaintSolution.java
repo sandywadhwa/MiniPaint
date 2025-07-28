@@ -121,10 +121,8 @@ class BeingZeroMainWindow extends JFrame
     }
 
     private void createAndAddComboBox(){
-        JComboBox cmbShape = new JComboBox();
-        cmbShape.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Line", "Oval", "Rectangle" }));
+        JComboBox<String> cmbShape = new JComboBox<>(new String[] { "Line", "Oval", "Rectangle" });
         cmbShape.setMaximumSize(new java.awt.Dimension(80, 30));
-        // TODO:  Add Item Listener
         cmbShape.addItemListener(new ItemListener() {
             public void itemStateChanged(ItemEvent evt) {
                 selectedShape = cmbShape.getSelectedItem().toString();
